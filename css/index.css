@@ -13,19 +13,19 @@ body {
   /* background-color: #001f3f; */
 }
 
-.main .title {
-  color: #10ac84;
+.title {
+  color: #fff;
   text-align: center;
 }
 
-.main .timers {
+.timers {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   margin: 5px;
 }
-.main .timers .watch {
+.watch {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,25 +34,26 @@ body {
   width: 395px;
   border: 1px solid #fff;
   border-radius: 10px;
+  box-shadow: 0 5px 15px -5px #00000070;
 }
 
-.main .timers .watch .hour {
+.hour {
   color: #fa5559;
 }
-.main .timers .watch .minute {
+.minute {
   color: #26c1b9;
 }
 
-.main .timers .watch .second {
+.second {
   color: #f6bc58;
 }
 
-.main .timers .watch .ms {
+.ms {
   font-size: 40px;
   color: #2ccb74;
 }
 
-.main .timers .watch .dot {
+.dot {
   color: #fff;
   font-size: 30px;
 }
@@ -63,17 +64,46 @@ body {
   margin-top: 40px;
 }
 
-.actions .icon {
-  width: 90px;
-  height: 90px;
-  background-color: #fff;
-  color: #10ac84;
-  border-radius: 30%;
-  margin: 20px;
-  position: relative;
+.action {
+  font-size: 30px;
+  text-decoration: none;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: all 0.5s;
+  font-weight: 300;
+  letter-spacing: -2px;
+  margin: 20px 50px;
 }
 
-.actions .icon i {
-  line-height: 90px;
-  font-size: 25px;
+#play {
+  border: 3px solid #2ccb74;
+  color: #2ccb74;
+}
+
+#play:hover {
+  font-weight: bold;
+  border: 5px solid #2ccb74;
+  letter-spacing: 10px;
+}
+
+#stop {
+  border: 3px solid #fa5559;
+  color: #fa5559;
+}
+
+#stop:hover {
+  font-weight: bold;
+  border: 5px solid #fa5559;
+  letter-spacing: 10px;
+}
+
+#pause {
+  border: 3px solid #f6bc58;
+  color: #f6bc58;
+}
+
+#pause:hover {
+  font-weight: bold;
+  border: 5px solid #f6bc58;
+  letter-spacing: 10px;
 }
