@@ -1,21 +1,27 @@
 * {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
-  font-size: 80px;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-  text-align: center;
-  background-color: #dfe6e9;
-  /* background-color: #001f3f; */
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #001f3f;
 }
 
 .title {
   color: #fff;
   text-align: center;
+  font-size: 80px;
+  margin: 0;
 }
 
 .timers {
@@ -23,12 +29,38 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 5px;
+  min-height: 200px;
+  opacity: 0;
 }
+
+.timers.show {
+  opacity: 1;
+}
+
+.input {
+  margin-top: 35px;
+}
+.input label {
+  font-size: 20px;
+  color: #fff;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  margin: 0 10px;
+}
+
+.input input[type="date"] {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  color: #001f3f;
+  outline: none;
+}
+
 .watch {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 80px;
   margin: 10px;
   height: 100px;
   width: 395px;
@@ -64,7 +96,7 @@ body {
   margin-top: 40px;
 }
 
-.action {
+.actions a {
   font-size: 30px;
   text-decoration: none;
   padding: 15px 30px;
@@ -75,34 +107,34 @@ body {
   margin: 20px 50px;
 }
 
-#play {
+.play {
   border: 3px solid #2ccb74;
   color: #2ccb74;
 }
 
-#play:hover {
+.play:hover {
   font-weight: bold;
   border: 5px solid #2ccb74;
   letter-spacing: 10px;
 }
 
-#stop {
+.stop {
   border: 3px solid #fa5559;
   color: #fa5559;
 }
 
-#stop:hover {
+.stop:hover {
   font-weight: bold;
   border: 5px solid #fa5559;
   letter-spacing: 10px;
 }
 
-#pause {
+.pause {
   border: 3px solid #f6bc58;
   color: #f6bc58;
 }
 
-#pause:hover {
+.pause:hover {
   font-weight: bold;
   border: 5px solid #f6bc58;
   letter-spacing: 10px;

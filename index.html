@@ -14,6 +14,10 @@
   <body>
     <div class="main">
       <h1 class="title">Countdown Timer</h1>
+      <div class="input">
+        <label>select date:</label>
+        <input class="startDate" type="date" />
+      </div>
       <div class="timers">
         <div class="watch">
           <span class="hour">10</span><span class="dot">.</span>
@@ -22,12 +26,16 @@
           <span class="ms">100</span>
         </div>
       </div>
-      <div class="actions">
-        <a href="#" id="play" class="action">play</a>
-        <a href="#" id="stop" class="action">stop</a>
-        <a href="#" id="pause" class="action">pause</a>
-      </div>
-      <div class="summary"></div>
     </div>
+    <div class="actions">
+      <a href="#" class="play">play</a>
+      <a href="#" class="stop">stop</a>
+      <a href="#" class="pause">pause</a>
+    </div>
+    <div class="summary"></div>
+    <script type="module">
+      import initialize from "./js/main.js";
+      initialize();
+    </script>
   </body>
 </html>
