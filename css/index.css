@@ -1,0 +1,79 @@
+* {
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 80px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #dfe6e9;
+  /* background-color: #001f3f; */
+}
+
+.main .title {
+  color: #10ac84;
+  text-align: center;
+}
+
+.main .timers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+.main .timers .watch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  height: 100px;
+  width: 395px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.main .timers .watch .hour {
+  color: #fa5559;
+}
+.main .timers .watch .minute {
+  color: #26c1b9;
+}
+
+.main .timers .watch .second {
+  color: #f6bc58;
+}
+
+.main .timers .watch .ms {
+  font-size: 40px;
+  color: #2ccb74;
+}
+
+.main .timers .watch .dot {
+  color: #fff;
+  font-size: 30px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.actions .icon {
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+  color: #10ac84;
+  border-radius: 30%;
+  margin: 20px;
+  position: relative;
+}
+
+.actions .icon i {
+  line-height: 90px;
+  font-size: 25px;
+}

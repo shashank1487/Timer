@@ -3,8 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Countdown timer" />
     <title>Timer</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    />
     <link rel="stylesheet" href="css/index.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="main">
+      <h1 class="title">Countdown Timer</h1>
+      <div class="timers">
+        <div class="watch">
+          <span class="hour">10</span><span class="dot">.</span>
+          <span class="minute">10</span><span class="dot">.</span>
+          <span class="second">10</span><span class="dot">.</span>
+          <span class="ms">100</span>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="#" class="icon play"><i class="fas fa-play-circle"></i></a>
+        <a href="#" class="icon pause"><i class="fas fa-pause-circle"></i></a>
+      </div>
+      <div class="summary"></div>
+    </div>
+  </body>
 </html>
