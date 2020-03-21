@@ -8,5 +8,12 @@ export const ACTIONS = {
   RESUME: "resume"
 };
 
-export const INCREASE = "increase";
-export const DECREASE = "decrease";
+export const EVENTS = {
+  ADD_THRESHOLD: "AddThreshold",
+  REMOVE_THRESHOLD: "RemoveThreshold"
+};
+
+export const LAP_STATUS = {
+  RUNNING: "running",
+  COMPLETED: "completed"
+};

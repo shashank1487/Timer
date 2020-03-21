@@ -1,4 +1,5 @@
 import Singleton from "./singleton.js";
+import { getDateString } from "../utils/helper.js";
 import * as CONSTANTS from "../utils/constants.js";
 
 const Input = function(elements = {}) {
@@ -27,21 +28,11 @@ Input.prototype.initialize = function() {
     self.timer.setThreshold(e.target.value);
   });
 
-  this.elements.inputTime.setAttribute("min", this.getMinDate());
+  this.elements.inputTime.setAttribute("min", getDateString());
   this.elements.inputTime.addEventListener("change", function(e) {
     self.timer.setStartTime(e.target.value);
     self.action.elements.playButton.classList.toggle("disabled");
   });
-};
-
-Input.prototype.getMinDate = function() {
-  let current = new Date();
-  let year = current.getFullYear();
-  let month = current.getMonth() + 1;
-  let day = current.getDate() + 1;
-  day = day < 10 ? `0${day}` : day;
-  month = month < 10 ? `0${month}` : month;
-  return `${year}-${month}-${day}`;
 };
 
 export default Input;

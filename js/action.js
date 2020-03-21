@@ -26,6 +26,9 @@ Action.prototype.initialize = function() {
   this.elements.pauseButton.addEventListener("click", e => {
     this.pause();
   });
+  this.elements.stopButton.addEventListener("click", e => {
+    this.stop();
+  });
 };
 
 Action.prototype.start = function(e) {
@@ -43,7 +46,6 @@ Action.prototype.start = function(e) {
   }
 
   function startHelper(actionName, timeInput) {
-    debugger;
     var self = this;
     if (timeInput) {
       this.timer.isRunning = true;
@@ -60,19 +62,23 @@ Action.prototype.start = function(e) {
         diff = startTime - Date.now();
         self.timer.displayClock(diff);
       }, 1);
-      this.timer.elements.timersLayout.classList.add("show");
+      this.timer.elements.timerLayout.classList.add("show");
       if (actionName === CONSTANTS.ACTIONS.RESUME) {
         this.elements.playButton.dataset.actionName = "play";
         this.elements.playButton.textContent = "play";
       }
-      this.elements.playButton.classList.toggle("disabled");
-      this.elements.stopButton.classList.toggle("disabled");
-      this.elements.pauseButton.classList.toggle("disabled");
+      this.toggleActionClass();
     }
   }
 };
 
-Action.prototype.stop = function() {};
+Action.prototype.stop = function() {
+  clearInterval(this.timer.interval);
+  let lapsLength = this.timer.laps.length,
+    lastLap = lapsLength && this.timer.laps[lapsLength - 1];
+  lastLap && lastLap.stop(this.timer.threshold);
+  this.toggleActionClass();
+};
 
 Action.prototype.pause = function() {
   this.timer.pauseTime = Date.now();
@@ -80,7 +86,12 @@ Action.prototype.pause = function() {
   clearInterval(this.timer.interval);
   this.elements.playButton.dataset.actionName = "resume";
   this.elements.playButton.textContent = "resume";
+  this.toggleActionClass();
+};
+
+Action.prototype.toggleActionClass = function() {
   this.elements.playButton.classList.toggle("disabled");
+  this.elements.stopButton.classList.toggle("disabled");
   this.elements.pauseButton.classList.toggle("disabled");
 };
 
