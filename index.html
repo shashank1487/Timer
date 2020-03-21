@@ -17,7 +17,7 @@
       <div class="input">
         <div class="threshold">
           <label>select threshold:</label>
-          <select>
+          <select class="limit">
             <option value="15">15 (sec)</option>
             <option value="30">30 (sec)</option>
             <option value="45">45 (sec)</option>
@@ -25,7 +25,7 @@
         </div>
         <div class="date">
           <label>select date:</label>
-          <input class="startDate" type="date" />
+          <input class="startTime" type="date" />
         </div>
       </div>
       <div class="timers">
@@ -38,10 +38,11 @@
       </div>
     </div>
     <div class="actions">
-      <a href="#" class="play" data-action-name="play">play</a>
-      <a href="#" class="stop">stop</a>
-      <a href="#" class="pause">pause</a>
+      <a href="#" class="play disabled" data-action-name="play">play</a>
+      <a href="#" class="stop disabled">stop</a>
+      <a href="#" class="pause disabled">pause</a>
     </div>
+    <div class="laps"></div>
     <div class="summary"></div>
     <script type="module">
       import initialize from "./js/main.js";

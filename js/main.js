@@ -1,10 +1,12 @@
+import Singleton from "./singleton.js";
 import Timer from "./timer.js";
+import * as CONSTANTS from "../utils/constants.js";
 
 let initialize;
 (function() {
-  let timer;
+  let input;
   initialize = function() {
-    timer = new Timer();
+    input = Singleton.getInstance(CONSTANTS.TYPES.INPUT);
   };
 })();
 
