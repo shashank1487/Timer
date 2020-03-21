@@ -1,8 +1,8 @@
 const Timer = function(elements = {}) {
-  //debugger;
   this.elements = {};
   this.isRunning = false;
   this.startDate = "";
+  this.pauseTime = null;
   this.interval = null;
   this.setElements(this.elements, elements);
   this.initialize();
@@ -35,32 +35,75 @@ Timer.prototype.initialize = function() {
   this.elements.inputDate.setAttribute("min", this.getMinDate());
   this.elements.inputDate.addEventListener("change", function(e) {
     e.preventDefault();
-    const start = e.target.value;
-    self.start(start);
+    self.startDate = e.target.value;
   });
-  this.elements.playButton.addEventListener("click", function() {
-    self.start(self.starDate);
+  this.elements.playButton.addEventListener("click", function(e) {
+    self.start(e);
   });
-  //this.elements.pauseButton.
+  this.elements.pauseButton.addEventListener("click", function(e) {
+    self.pause();
+  });
+  if (!this.isRunning) {
+    this.elements.stopButton.classList.toggle("disabled");
+    this.elements.pauseButton.classList.toggle("disabled");
+  }
 };
 
-Timer.prototype.start = function(start) {
-  let self = this;
-  this.startDate = start;
-  this.isRunning = true;
+Timer.prototype.start = function(e) {
+  debugger;
+  let startTime, now, diff, lag;
 
-  this.interval = setInterval(function() {
-    const startTime = Date.parse(self.startDate);
-    const now = Date.now();
-    const difference = startTime - now;
-    self.displayClock(difference);
-  }, 1);
-  this.elements.timersLayout.classList.add("show");
+  switch (e.target.dataset.actionName) {
+    case "play":
+      if (this.startDate) {
+        let self = this;
+        this.isRunning = true;
+        startTime = Date.parse(this.startDate);
+        this.interval = setInterval(function() {
+          diff = startTime - Date.now();
+          self.displayClock(diff);
+        }, 1);
+        this.elements.timersLayout.classList.add("show");
+        this.elements.playButton.classList.toggle("disabled");
+        this.elements.stopButton.classList.toggle("disabled");
+        this.elements.pauseButton.classList.toggle("disabled");
+      }
+      break;
+    case "resume":
+      if (this.pauseTime) {
+        let self = this;
+        this.isRunning = true;
+        this.startDate = new Date(
+          Date.parse(this.startDate) + Date.now() - this.pauseTime
+        );
+        startTime = Date.parse(this.startDate);
+        this.interval = setInterval(function() {
+          diff = startTime - Date.now();
+          self.displayClock(diff);
+        }, 1);
+        this.elements.timersLayout.classList.add("show");
+        this.elements.playButton.dataset.actionName = "play";
+        this.elements.playButton.textContent = "play";
+        this.elements.playButton.classList.toggle("disabled");
+        this.elements.stopButton.classList.toggle("disabled");
+        this.elements.pauseButton.classList.toggle("disabled");
+      }
+      break;
+  }
 };
 
 Timer.prototype.stop = function() {};
 
-Timer.prototype.pause = function() {};
+Timer.prototype.pause = function() {
+  debugger;
+  this.pauseTime = Date.now();
+  this.isRunning = false;
+  clearInterval(this.interval);
+  this.elements.playButton.dataset.actionName = "resume";
+  this.elements.playButton.textContent = "resume";
+  this.elements.playButton.classList.toggle("disabled");
+  this.elements.pauseButton.classList.toggle("disabled");
+};
 
 Timer.prototype.displayClock = function(diff) {
   const { hours, minutes, seconds, milliSeconds } = this.getTimerData(diff);
@@ -81,7 +124,6 @@ Timer.prototype.getMinDate = function() {
   let year = current.getFullYear();
   let month = current.getMonth() + 1;
   let day = current.getDate() + 1;
-
   day = day < 10 ? `0${day}` : day;
   month = month < 10 ? `0${month}` : month;
   return `${year}-${month}-${day}`;

@@ -15,8 +15,18 @@
     <div class="main">
       <h1 class="title">Countdown Timer</h1>
       <div class="input">
-        <label>select date:</label>
-        <input class="startDate" type="date" />
+        <div class="threshold">
+          <label>select threshold:</label>
+          <select>
+            <option value="15">15 (sec)</option>
+            <option value="30">30 (sec)</option>
+            <option value="45">45 (sec)</option>
+          </select>
+        </div>
+        <div class="date">
+          <label>select date:</label>
+          <input class="startDate" type="date" />
+        </div>
       </div>
       <div class="timers">
         <div class="watch">
@@ -28,7 +38,7 @@
       </div>
     </div>
     <div class="actions">
-      <a href="#" class="play">play</a>
+      <a href="#" class="play" data-action-name="play">play</a>
       <a href="#" class="stop">stop</a>
       <a href="#" class="pause">pause</a>
     </div>
