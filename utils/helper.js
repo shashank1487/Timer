@@ -8,10 +8,12 @@ export const getDateString = function() {
   return `${year}-${month}-${day}`;
 };
 
-export const getTimeParts = function(time) {
+export const getTimeParts = function(time, daysRequired = true) {
   let days = Math.floor(time / (1000 * 60 * 60 * 24));
   time = time % (1000 * 60 * 60 * 24);
-  let hours = days * 24 + Math.floor(time / (60 * 60 * 1000));
+  let hours = daysRequired
+    ? days * 24 + Math.floor(time / (60 * 60 * 1000))
+    : Math.floor(time / (60 * 60 * 1000));
   time = time % (60 * 60 * 1000);
   let minutes = Math.floor(time / (60 * 1000));
   time = time % (60 * 1000);
@@ -25,4 +27,22 @@ export const getTimeParts = function(time) {
     seconds,
     milliSeconds
   };
+};
+
+export const saveDataInStorage = function(data, key) {
+  if (data && typeof data === "object") {
+    data = JSON.stringify(data);
+  }
+  let storage = window.localStorage;
+  storage && storage.setItem(key, data);
+};
+export const getDataFromStorage = function(key) {
+  let storage = window.localStorage;
+  let data = storage && storage.getItem(key);
+  return data;
+};
+
+export const removeDataFromStorage = function(key) {
+  let storage = window.localStorage;
+  storage && storage.removeItem(key);
 };

@@ -1,6 +1,10 @@
 import * as CONSTANTS from "../utils/constants.js";
 import { getTimeParts } from "../utils/helper.js";
 
+/**
+ * This function represents the lap
+ * @param  { elements = The elements object containing the classes of the corresponding elements in the html}
+ */
 const Lap = function(elements = {}) {
   this.elements = {};
   this.startTime = null;
@@ -46,6 +50,7 @@ Lap.prototype.setEndTime = function(endTime) {
 Lap.prototype.start = function(lapNumber, threshold) {
   let self = this,
     diff;
+  this.setStartTime(Date.now());
   this.lapNumber = lapNumber + 1;
   this.status = CONSTANTS.LAP_STATUS.RUNNING;
   this.statusText = `Lap ${this.lapNumber} running: `;
@@ -65,8 +70,9 @@ Lap.prototype.start = function(lapNumber, threshold) {
   this.elements.lapLayout.appendChild(this.elements.lap);
   this.interval = setInterval(function() {
     diff = Date.now() - self.startTime;
-    diff > threshold * 1000 &&
+    if (diff > threshold * 1000) {
       self.elements.lapLayout.dispatchEvent(self.AddThresholdEvent);
+    }
     self.displayLap(diff);
   }, 1000);
 };

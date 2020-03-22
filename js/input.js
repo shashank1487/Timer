@@ -2,6 +2,10 @@ import Singleton from "./singleton.js";
 import { getDateString } from "../utils/helper.js";
 import * as CONSTANTS from "../utils/constants.js";
 
+/**
+ * This function represents the user input (threshold and the start date)
+ * @param  { elements = The elements object containing the classes of the corresponding elements in the html}
+ */
 const Input = function(elements = {}) {
   this.elements = {};
   this.timer = null;
@@ -31,7 +35,7 @@ Input.prototype.initialize = function() {
   this.elements.inputTime.setAttribute("min", getDateString());
   this.elements.inputTime.addEventListener("change", function(e) {
     self.timer.setStartTime(e.target.value);
-    self.action.elements.playButton.classList.toggle("disabled");
+    self.action.elements.playButton.classList.remove("disabled");
   });
 };
 
